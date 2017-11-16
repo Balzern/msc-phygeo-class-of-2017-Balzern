@@ -1,0 +1,32 @@
+---
+title: "Aufgabe 1"
+author: "Balzer"
+date: "2 November 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+a<-2
+b<-5
+r1<-sum(a,b)
+r2<-a-b
+r3<-prod(a,b)
+r4<-a/b
+r5<-a**b
+v1<-c(r1,r2,r3,r4,r5)
+print(v1)
+v2<-c("sum","diff","prod","ratio","power")
+print(v2)
+df<-data.frame(v1,v2)
+colnames(df)<-c("Results","Operations")
+show(df)
+df[3,1]
+
+```
+

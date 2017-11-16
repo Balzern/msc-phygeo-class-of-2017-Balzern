@@ -1,0 +1,61 @@
+---
+title: "rs-ws-02-2"
+author: "TLKoch, Balzern, s-johannes"
+date: "14 November 2017"
+output: html_document
+---
+
+```{r, include= TRUE, eval=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+source("D:/Master/msc-phygeo-class-of-2017-TLKoch/functions/definition.R")
+datnames <- list.files(paste0(prmdata, "luft/"), glob2rx("*.tif"), full.names= TRUE, all.files = TRUE)
+
+
+luftbilder <- list()
+for (i in seq(length(datnames))) {
+  luftbilder[[i]] <- stack(datnames[i])
+}
+
+lidar <- raster(paste0(prmdata, "lidar.tif"))
+```
+
+# Using aerial images
+
+```{r, include= TRUE, eval=FALSE}
+aerial1 <- luftbilder[[7]]
+aerial2 <- luftbilder[[8]]
+```
+
+# projection
+
+```{r, include= TRUE, eval=FALSE}
+projection(aerial1)= CRS("+init=epsg:25832")
+projection(aerial2)= CRS("+init=epsg:25832")
+```
+
+# crop
+
+```{r, include= TRUE, eval=FALSE}
+aerialcrop1 <- crop(aerial1, lidar)
+aerialcrop2 <- crop(aerial2, lidar)
+
+aerial_croped <- c(aerialcrop1,aerialcrop2)
+```
+
+# write raster
+
+```{r, include= TRUE, eval=FALSE}
+writeRaster(aerialcrop1, filename=paste0(prmresults, "aerial_croped/aerial_croped1"), format= "GTiff", overwrite=TRUE)
+writeRaster(aerialcrop2, filename=paste0(prmresults, "aerial_croped/aerial_croped2"), format= "GTiff", overwrite=TRUE)
+
+```
+
+# deprc an original dateien
+
+```{r, include= TRUE, eval=FALSE}
+writeRaster(aerial1, filename=paste0(prmdata, "luft/aerial1_deprc"), format= "GTiff", overwrite=TRUE)
+writeRaster(aerial2, filename=paste0(prmdata, "luft/aerial2_deprc"), format= "GTiff", overwrite=TRUE)
+```
+
+# add a screenshot of the cropped images as visualized in a GIS software

@@ -1,0 +1,112 @@
+---
+title: "da-ws-02-1"
+author: "Niklas Balzer"
+date: "6 November 2017"
+output: html_document
+---
+
+```{r}
+#Nr.1
+n=10
+
+if (n>1) {
+  print("larger")
+}else {
+  print("equal or smaller")
+}
+#Nr.2
+n=10
+
+if (n>1) {
+  print("larger")
+}else if (n==1){
+  print("equal")
+}else if(n<1){
+print("smaller")
+}
+
+#Nr.3  
+n=10  
+if (n %% 2!=0) {
+  print("Odd")
+} else{
+  print("even")
+}  
+
+#Nr.4
+for (n in seq(0,2))
+  if (n>1) {
+    print("larger")
+  }else if (n==1){
+    print("equal")
+  }else if (n<1){
+    print("smaller")
+  }
+#Nr.5
+result <- c() 
+
+for (n in seq(-1, 5)){
+  if (n>1) {
+    a <- "larger"
+    result <- c(result,a)
+  } else if (n==1){
+    a <- "equal"
+    result <- c(result,a)
+  } else if (n<1){
+    a <- "smaller"
+    result <- c(result,a)
+  } 
+}
+result
+
+#Nr.6
+
+result2<-list()
+for (n in seq(-1, 5))
+  if (n>1) {
+    a <- "larger"
+    result2 <- c(result2,a)
+  } else if (n==1){
+    a <- "equal"
+    result2 <- c(result2,a)
+  } else if (n<1){
+    a <- "smaller"
+    result2 <- c(result2,a)
+}
+result2
+
+#Nr.7
+
+r<-c(0,2,3)
+
+result3 <- lapply(seq(r), function(n){
+  if (r[n]>1) {
+    ("larger")
+     } else if (r[n]==1){
+    ("equal")
+  } else if (r[n]<1){
+    ("smaller")
+  } 
+})
+result3
+
+#Nr.8
+
+r <- c(0,2,3)
+
+result3 <- lapply(seq(r), function(n){
+  if (r[n]>1) {
+    ("larger")
+  } else if (r[n]==1){
+    ("equal")
+  } else if (r[n]<1){
+    ("smaller")
+  } 
+})
+
+result3
+result4 <- unlist(result3)
+result4
+
+```
+

@@ -1,0 +1,53 @@
+---
+title: "gi-ws-02-1"
+author: "TLKoch, Balzern, s-johannes"
+date: "13 November 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1
+
+
+```{r}
+structuralattribute <- c("canopy height", "understory structure", "understory density", "ground elevation")
+response <- c("first return", "return count between first and last return", "density of the returning points", "last return")
+spatialscale <- c("vertical", "vertical", "horizontal", "vertical")
+
+df <- data.frame(structuralattribute,response,spatialscale)
+
+library(knitr)
+kable(df)
+
+```
+
+## 2
+1) Create DEM and DSM from first and last returns
+
+2) Canopy height --> subtract DEM from DSM
+
+3) Understory structure --> count returns in between canopy and ground for different heights (vegetation foliage partly transmissive for the NIR used by lidar); create height classes (for example 0-1m, 1-2m,...) and assign the returns to the classes
+
+4) Understory density: create a raster for each height class; summarize the raster pixels (return count) for each height and calculate the density
+
+
+
+```{r}
+DiagrammeR::mermaid("
+graph LR
+A(Create DEM and DSM) --> B(Canopy height)
+    B --> C(Understory structure)
+    C --> D(understory density)
+")
+   
+```
+
+## 3
+### Problems
+
+-	when the understory is very dense, the laser signal cannot reach the ground and thus the ground elevation value is too high
+-	the top of a tree may not be hit by the laser signal resulting in a too low value of canopy height
+- the understory density may not be comparable, because the canopy could have blocked many returns
